@@ -4,7 +4,8 @@ import Card from './Card.jsx'
 import './index.css'
 
 function App() {
-  const [dexes, setDexes] = useState([]);
+  const [dexes] = useState([]);
+  const [count, setCount] = useState(151);
    
   useEffect(() => {
     
@@ -54,10 +55,11 @@ function App() {
                 }
             ]
           }
-          newPk.id = 265
+          newPk.id = count
           newPk.name = newNome
-          esconderModal()  
+          setCount((count) => count + 1)
           dexes.push(newPk)
+          esconderModal()
         } else {
           form.reset()
           alert('Nome inválido, somente letras')
@@ -77,93 +79,103 @@ function App() {
 
   return (
     <div className="App">
-  <div className="container">
-      <div className="modal" id="modal">
-        <div className="modal-conteudo">
-          <span id="esconderModal"> &times;</span>
-            <form id="adicionarPKMN">
-              <label>nome</label>
-              <input type="text" id="pkm-name" name="nome"/>
-              <label>tipos</label>
-              <div className="tipos">
-                <select name="tipo1" className="tipo-adicionado">
-                      <option className='fire'>fire</option>
-                      <option className="water">water</option>
-                      <option className ="grass">grass</option>
-                      <option className="dark">dark</option>
-                      <option className= "psychic">psychic</option>
-                      <option className="fighting">fighting</option>
-                      <option className="bug">bug</option>
-                      <option className="dragon">dragon</option>
-                      <option className="electric">electric</option>
-                      <option className="fairy">fairy</option>
-                      <option className="flying">flying</option>
-                      <option className="ghost">ghost</option>
-                      <option className="ground">ground</option>
-                      <option className="ice">ice</option>
-                      <option className="normal">normal</option>
-                      <option className="poison">poison</option>
-                      <option className="rock">rock</option>
-                      <option className="steel">steel</option>
+
+      <div className="container">
+
+          <div className="modal" id="modal">
+
+            <div className="modal-conteudo">
+
+              <span id="esconderModal"> &times;</span>
+
+                <form id="adicionarPKMN">
+
+                  <label>nome</label>
+                  <input type="text" id="pkm-name" name="nome"/>
+
+                  <label>tipos</label>
+                  <div className="tipos">
+                    <select name="tipo1" className="tipo-adicionado">
+                          <option className='fire'>fire</option>
+                          <option className="water">water</option>
+                          <option className ="grass">grass</option>
+                          <option className="dark">dark</option>
+                          <option className= "psychic">psychic</option>
+                          <option className="fighting">fighting</option>
+                          <option className="bug">bug</option>
+                          <option className="dragon">dragon</option>
+                          <option className="electric">electric</option>
+                          <option className="fairy">fairy</option>
+                          <option className="flying">flying</option>
+                          <option className="ghost">ghost</option>
+                          <option className="ground">ground</option>
+                          <option className="ice">ice</option>
+                          <option className="normal">normal</option>
+                          <option className="poison">poison</option>
+                          <option className="rock">rock</option>
+                          <option className="steel">steel</option>
                     </select>
-                <select name="tipo2" className="tipo-adicionado2">
-                      <option></option>
-                      <option className='fire'>fire</option>
-                      <option className="water">water</option>
-                      <option className="grass">grass</option>
-                      <option className="dark">dark</option>
-                      <option className="psychic">psychic</option>
-                      <option className="fighting">fighting</option>
-                      <option className="bug">bug</option>
-                      <option className="dragon">dragon</option>
-                      <option className="electric">electric</option>
-                      <option className="fairy">fairy</option>
-                      <option className="flying">flying</option>
-                      <option className="ghost">ghost</option>
-                      <option className="ground">ground</option>
-                      <option className="ice">ice</option>
-                      <option className="normal">normal</option>
-                      <option className="poison">poison</option>
-                      <option className="rock">rock</option>
-                      <option className="steel">steel</option>
+                    <select name="tipo2" className="tipo-adicionado2">
+                          <option></option>
+                          <option className='fire'>fire</option>
+                          <option className="water">water</option>
+                          <option className="grass">grass</option>
+                          <option className="dark">dark</option>
+                          <option className="psychic">psychic</option>
+                          <option className="fighting">fighting</option>
+                          <option className="bug">bug</option>
+                          <option className="dragon">dragon</option>
+                          <option className="electric">electric</option>
+                          <option className="fairy">fairy</option>
+                          <option className="flying">flying</option>
+                          <option className="ghost">ghost</option>
+                          <option className="ground">ground</option>
+                          <option className="ice">ice</option>
+                          <option className="normal">normal</option>
+                          <option className="poison">poison</option>
+                          <option className="rock">rock</option>
+                          <option className="steel">steel</option>
                     </select>
-              </div>
-              <button id="confirm-pk" type="button">confirmar</button>
-            </form>
-        </div>
-      </div>
+                  </div>
+                  <button id="confirm-pk" type="button">confirmar</button>
+                </form>
 
-      <header id="head-pkdex">
-         
-        <div className="navbar-pkdex">
-          <i className="gg-pokemon"></i>
-          <a>Pokédex</a>
+            </div>
+          </div>
+
+          <header id="head-pkdex">
+            
+            <div className="navbar-pkdex">
+              <i className="gg-pokemon"></i>
+              <a>Pokédex</a>
+            </div>
+
+          </header>
+
+          <main id="body-pkdex">
+                        
+            <div className="search">
+              <button id="btn-pk" type="button">adicionar</button>
+              <input type="text" id="searchbox" placeholder="pesquisa aqui!"/>
+              dexes
+            </div>
+            
+            <div className="container-pk">
+            {[...dexes].map((pokemon, i) => <Card key={i+1} pokemon={pokemon}/>)}
+            </div>
+            <div className="base">
+            </div>
+            
+          </main>
+    
+          <footer id="footer-pkdex">
+
+            <a>R.L.S.   s2</a>
+
+          </footer>
+
         </div>
         
-      </header>
-
-      <main id="body-pkdex">
-                    
-        <div className="search">
-          
-          <button id="btn-pk" type="button">adicionar</button>
-          <input type="text" id="searchbox" placeholder="pesquisa aqui!"/>
-          dexes
-        </div>
-        
-        <div className="container-pk">
-        {[...dexes].map((pokemon, i) => <Card key={i+1} pokemon={pokemon}/>)}
-        </div>
-        <div className="base">
-        </div>       
-
-        
-      </main>
- 
-      <footer id="footer-pkdex">
-        <a>R.L.S.   s2</a>
-      </footer>
-      </div>
     </div>
   )
 }

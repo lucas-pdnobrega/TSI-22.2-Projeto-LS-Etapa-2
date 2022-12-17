@@ -1,5 +1,5 @@
-# Projeto-LS-Etapa-1
-Etapa I do Projeto Final da disciplina Linguagens de Script CSTSI 22.2
+# Projeto-LS-Etapa-2
+Etapa II do Projeto Final da disciplina Linguagens de Script CSTSI 22.2
 
 O Projeto da disciplina tem como objetivo desenvolver um aplicativo de front-end Web a framework ReactJS. O site é uma enciclopédia de Pokémon, a "PokéDex" o usuário podendo pesquisar e filtrar a mesma pelo nome ou id do Pokémon.
 
