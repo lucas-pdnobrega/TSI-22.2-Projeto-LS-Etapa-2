@@ -78,17 +78,18 @@ export function confirmBtnListener() {
         const pattern = /^(\p{L}\s*)+(\p{L}|\.|\?|!)$/iu
         
         if (pattern.test(newNome)) {
-        if (formData.get('tipo2') == '') {
-            newTypes = [formData.get('tipo1')]
-        } else {
-            newTypes = [formData.get('tipo1'), formData.get('tipo2')]
-        }
+          if (formData.get('tipo2') == '') {
+          newTypes = [formData.get('tipo1')]
+      } else {
+          newTypes = [formData.get('tipo1'), formData.get('tipo2')]
+      }
+
+        newPk.type = newTypes
         newPk.id = current_id
         newPk.name = newNome
-        newPk.type = newTypes
         
         const target = document.querySelector('.container-pk')
-        /*target.insertAdjacentHTML('beforeend', <Card key={current_id} pokemon={newPk}/>);*/
+        /*target.insertAdjacentHTML('beforeend', <Card key={current_id} pokemon={newPk}/>)*/
         esconderModal()
         document.getElementById(`n${idPad(current_id, 3)}`).scrollIntoView()
         } else {
@@ -97,3 +98,59 @@ export function confirmBtnListener() {
         }
     })
 }
+
+export function buildPkmn() {
+      current_id = 265
+      const form = document.getElementById('adicionarPKMN');
+      const formData = new FormData(form);
+
+      let newPk = {}
+      
+      const newNome = formData.get('nome')
+      const pattern = /^(\p{L}\s*)+(\p{L}|\.|\?|!)$/iu
+      
+      if (pattern.test(newNome)) {
+        if (formData.get('tipo2') == '') {
+          newPk.types = [
+            {
+                "slot": 1,
+                "type": {
+                    "name": `${formData.get('tipo1')}`,
+                }
+            }
+        ]
+        } else {
+            newPk.types = [
+              {
+                  "slot": 1,
+                  "type": {
+                      "name": `${formData.get('tipo1')}`,
+                  }
+              },
+              {
+                  "slot": 2,
+                  "type": {
+                      "name": `${formData.get('tipo2')}`,
+                  }
+              }
+          ]
+        }
+        newPk.id = current_id
+        newPk.name = newNome
+      
+      const target = document.querySelector('.container-pk')
+      esconderModal()
+      return newPk
+      document.getElementById(`n${idPad(current_id, 3)}`).scrollIntoView()
+      } else {
+      form.reset()
+      alert('Nome inválido, somente letras')
+      }
+}
+
+
+/*export function confirmBtnListener() {
+  const button = document.getElementById("confirm-pk")
+  button.addEventListener('click', function(event) {
+  }
+}*/

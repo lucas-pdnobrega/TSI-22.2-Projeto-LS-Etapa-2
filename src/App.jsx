@@ -1,50 +1,83 @@
 import { useState, useEffect } from 'react'
-import { searchBoxListener, addBtnListener, removerBtnListener, confirmBtnListener } from './utils'
-import dex from './dex.js'
+import { searchBoxListener, addBtnListener, removerBtnListener, esconderModal } from './utils'
 import Card from './Card.jsx'
 import './index.css'
 
 function App() {
-
-  const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}`
-  const generatePokemonPromises = () => Array(151).fill().map((_, i) =>
-    (fetch(getPokemonUrl(i + 1)).then(response => response.json())))
-  const pokemonPromises = generatePokemonPromises()
-  function reducePromises(pokemons) { 
-    return pokemons.reduce((Pkmn, { id, types, species }))
-  }
-
+  const [dexes, setDexes] = useState([]);
+   
   useEffect(() => {
+    
+    const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon-form/${id}/`
+    
+    async function loadPokemons() {
+      for (let i = 0; i < 150; i++) {
+        let res = await (await fetch(getPokemonUrl(i+1))).json()
+        dexes.push(res)
+      } 
+    }
+
+    function confirmBtnListener() {
+      const button = document.getElementById("confirm-pk")
+      button.addEventListener('click', function(event) {
+        const form = document.getElementById('adicionarPKMN');
+        const formData = new FormData(form);
+
+        let newPk = {}
+        
+        const newNome = formData.get('nome')
+        const pattern = /^(\p{L}\s*)+(\p{L}|\.|\?|!)$/iu
+        
+        if (pattern.test(newNome)) {
+          if (formData.get('tipo2') == '') {
+            newPk.types = [
+              {
+                  "slot": 1,
+                  "type": {
+                      "name": `${formData.get('tipo1')}`,
+                  }
+              }
+          ]
+          } else {
+              newPk.types = [
+                {
+                    "slot": 1,
+                    "type": {
+                        "name": `${formData.get('tipo1')}`,
+                    }
+                },
+                {
+                    "slot": 2,
+                    "type": {
+                        "name": `${formData.get('tipo2')}`,
+                    }
+                }
+            ]
+          }
+          newPk.id = 265
+          newPk.name = newNome
+          esconderModal()  
+          dexes.push(newPk)
+        } else {
+          form.reset()
+          alert('Nome inválido, somente letras')
+        }
+        })
+      }
+
+
+     
+    loadPokemons()
     searchBoxListener()
     addBtnListener()
     removerBtnListener()
     confirmBtnListener()
-  })
+
+  }, [])
 
   return (
     <div className="App">
-       {/*<div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-  </p>*/}
   <div className="container">
-
       <div className="modal" id="modal">
         <div className="modal-conteudo">
           <span id="esconderModal"> &times;</span>
@@ -101,7 +134,7 @@ function App() {
       </div>
 
       <header id="head-pkdex">
-        
+         
         <div className="navbar-pkdex">
           <i className="gg-pokemon"></i>
           <a>Pokédex</a>
@@ -115,18 +148,18 @@ function App() {
           
           <button id="btn-pk" type="button">adicionar</button>
           <input type="text" id="searchbox" placeholder="pesquisa aqui!"/>
-          
+          dexes
         </div>
         
         <div className="container-pk">
-        {[...dex].map((pokemon, i) => <Card key={i+1} pokemon={pokemon}/>)}
+        {[...dexes].map((pokemon, i) => <Card key={i+1} pokemon={pokemon}/>)}
         </div>
         <div className="base">
         </div>       
 
         
       </main>
-
+ 
       <footer id="footer-pkdex">
         <a>R.L.S.   s2</a>
       </footer>
