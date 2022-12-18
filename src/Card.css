@@ -1,0 +1,224 @@
+.col-pk {
+    background-color: white;
+    border-style: outset;
+    border-radius: 3.6678%;
+    padding: 0.3550rem;
+    margin: 1.244%;
+}
+
+.img-pk {
+    width: 12.6rem;
+    height: auto;
+    background-color: #E2E5E6;
+    border-radius: 3.6678%;
+}
+
+.id-pk {
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.col-pk p {
+    transition: 3s;
+    margin: 1.533%;
+}
+
+.types {
+    display: flex;
+    color: white;
+    margin: 1.533%;
+}
+
+
+/*
+TIPOS & CÓDIGOS HEXADECIMAIS - REFERÊNCIA
+    {
+        "Normal": "#a8a77a",
+        "Fire": "#ee8130",
+        "Water": "#6390f0",
+        "Electric": "#f7d02c",
+        "Grass": "#7ac74c",
+        "Ice": "#96d9d6",
+        "Fighting": "#c22e28",
+        "Poison": "#a33ea1",
+        "Ground": "#e2bf65",
+        "Flying": "#a98ff3",
+        "Psychic": "#f95587",
+        "Bug": "#a6b91a",
+        "Rock": "#b6a136",
+        "Ghost": "#735797",
+        "Dragon": "#6f35fc",
+        "Dark": "#705746",
+        "Steel": "#b7b7ce",
+        "Fairy": "#d685ad"
+    }
+*/
+
+.normal {
+    background-color: #a8a77a;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.fire {
+    background-color: #ee8130;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.water {
+    background-color: #6390f0;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.electric {
+    background-color: #f7d02c;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.grass {
+    background-color: #7ac74c;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.ice {
+    background-color: #96d9d6;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.fighting {
+    background-color: #c22e28;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.poison {
+    background-color: #a33ea1;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.ground {
+    background-color: #e2bf65;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.flying {
+    background-color: #a98ff3;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.psychic {
+    background-color: #f95587;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.bug {
+    background-color: #a6b91a;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.rock {
+    background-color: #b6a136;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.ghost {
+    background-color: #735797;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.dragon {
+    background-color: #6f35fc;
+    border-radius: 6.444%;
+    padding: inherit;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.dark {
+    background-color: #705746;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.steel {
+    background-color: #b7b7ce;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+.fairy {
+    background-color: #d685ad;
+    border-radius: 6.444%;
+    margin: inherit;
+    width: 6.222rem;
+    text-align: center;
+}
+
+
+/* The animation code */
+@keyframes hover_bounce {
+
+    0%,
+    100%,
+    50% {
+        transform: translateY(0);
+    }
+
+    35% {
+        transform: translateY(-6.77px);
+    }
+
+    60% {
+        transform: translateY(-4px);
+    }
+}
+
+/* The element to apply the animation to */
+.col-pk:hover {
+    animation: hover_bounce 0.5s linear;
+}
